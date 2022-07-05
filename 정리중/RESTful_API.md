@@ -1,18 +1,10 @@
----
-
-### 자료모으기
-
-- 
-
----
-
 ## What
 
-- HTTP 주요 저자 중 한명인 로이 필딩은 그 당시 웹(HTTP)의 설계의 우수성에 비해 제대로 활용되어지지 못하는 모습에 안타까워하며 웹의 장점을 최대한 활용할 수 있는 아키텍처로 REST를 발표
-- REST ( Representational State Transfer )
-- API ( Application Programming Interface )
-- HTTP URI를 통해 리소스를 명시하고 HTTP METHOD를 통해 리소스에 대한 행위를 명시
-- RESTful API REST 아키텍처의 제약 조건을 준수하는 애플리케이션 프로그래밍 인터페이스
+REST는 HTTP의 주요저자 중 한명인 로이필딩이 HTTP의 설계의 우수성에 비해 제대로 활용되지 못하는 모습에 안타까워하며 HTTP의 장점을 최대한 활용할 수 있는 아키텍처 REST를 발표했다.
+
+REST(Representational State Transfer)란? 간단히 HTTP URI를 통해 리소스를 명시하고 HTTP METHOD를 통해 리소스에 대한 행위를 명시하는 것을 의미한다.
+
+즉 RESTful API는 REST 아키텍처를 준수하는 애플리케이션 프로그래밍 인터페이스이다.
 
 ---
 
@@ -29,8 +21,6 @@
     - METHOD의 형태가 제한적
     - 표준이 존재하지 않음
     - 구형 브라우저의 경우 제대로 지원해주지 못함
-- 다양한 클라이언트의 등장
-- 
 
 ---
 
@@ -57,6 +47,14 @@ RESTful API의 기본 기능은 인터넷 브라우징과 동일하다.
 
 ### REST API 설계 규칙
 
+1. 소문자를 사용한다
+2. 언더바대신 하이픈을 사용한다.
+3. 마지막에는 슬래시를 포함하지 않는다.
+4. 계층관계를 나타낼 때는 슬래시 구분자를 사용한다.
+5. 파일확장자는 URI에 포함시키지 않는다.
+6. 전달하고자 하는 자원의 명사를 사용하되, 컨트롤 자원을 의미하는 경우 예외적으로 동사를 허용한다.
+7. 영어를 복수형으로 작성한다.
+
 ### REST API 설계 예시
 
 | 행위 | HTTP METHOD | HTTP URI |
@@ -71,8 +69,9 @@ RESTful API의 기본 기능은 인터넷 브라우징과 동일하다.
 
 ## Feature
 
-- Server-Client 구조
-    - 리소스가 있는 쪽이 Server, 리소스를 요청하는 쪽이 Client
+- Uniform Interface (인터페이스 일관성)
+    - URI로 지정한 리소스에 대한 조작을 통일되고 한정적인 인터페이스로 수행한다.
+    - HTTP를 따르는 모든 플랫폼에 사용가능 (특정 언어나 기술에 종속 X)
 - Stateless (무상태)
     - HTTP을 사용하는 REST역시 무상태성을 갖는다.
     - 클라이언트의 정보를 서버에 저장하지 않는다.
@@ -86,9 +85,10 @@ RESTful API의 기본 기능은 인터넷 브라우징과 동일하다.
 - Layerd System(계층화)
     - 서버는 다중 계층으로 구성될 수 있다.
         - 보안, 로드밸런싱, 암호화, 인증, Proxy, 게이트웨이 등
-- Uniform Interface (인터페이스 일관성)
-    - URI로 지정한 리소스에 대한 조작을 통일되고 한정적인 인터페이스로 수행한다.
-    - HTTP를 따르는 모든 플랫폼에 사용가능 (특정 언어나 기술에 종속 X)
+- Code on demand(optional)
+    - 자바 애플릿이나 자바스크립트의 제공을 통해 서버가 클라이언트가 실행시킬 수 있는 로직을 전송하여 기능을 확장시킬 수 있다.
+- Server-Client 구조
+    - 리소스가 있는 쪽이 Server, 리소스를 요청하는 쪽이 Client
 
 ---
 
@@ -100,3 +100,4 @@ RESTful API의 기본 기능은 인터넷 브라우징과 동일하다.
 
 - [https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
 - [https://www.redhat.com/ko/topics/api/what-is-a-rest-api](https://www.redhat.com/ko/topics/api/what-is-a-rest-api)
+- [https://ko.wikipedia.org/wiki/REST](https://ko.wikipedia.org/wiki/REST)
