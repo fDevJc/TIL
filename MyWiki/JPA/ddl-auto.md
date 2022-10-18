@@ -1,0 +1,5 @@
+- create : SessionFactory 시작시 스키마를 삭제하고 다시 생성
+- create-drop : SessionFactory 종료 시 스키마를 삭제
+- update : SessionFactory 연결된 DB와 비교하여 추가된 항목은 추가 만약 같은 변수명이면 오류발생
+- validate : SessionFactory 시작시 객체구성과 스키마가 다르다면 예외 발생
+- none: 아무것도 안함
