@@ -1,9 +1,6 @@
 # TIL
 Today I Learned
 
-# 관심사
-- (BOOK) 자바성능 튜닝이야기
-- elasticsearch
-- kafka
-- NoSQL
-
+# 공부중
+- BOOK: CleanCode
+- Inflearn: 토비의 스프링 부트
