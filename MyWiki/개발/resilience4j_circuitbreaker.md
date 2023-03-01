@@ -63,17 +63,20 @@
 ### CircuitBreakerRegistry
 - 스레드 안전 및 원자성 보장을 제공하는 ConcurrentHashMap을 기반으로 하는 인메모리 CircuitBreakerRegistry 제공
 - CircuitBreakerRegistry를 활용하여 CircuitBreaker 인스턴스 관리(생성 및 검색)
-- 
 
 ### CircuitBreaker 설정정보 ([링크](https://resilience4j.readme.io/docs/circuitbreaker#create-and-configure-a-circuitbreaker))
 - failureRateThreshold
+    - 실패율 임계점(백분율)
 - slowCallRateThreshold
+    - 슬로우콜 비율 임계점(백분율)
 - slowCallDurationThreshold
+    - 슬로우콜 기준
 - permittedNumberOfCallsInHalfOpenState
 - maxWaitDurationInHalfOpenState
 - slidingWindowType
 - slidingWindowSize
 - minimumNumberOfCalls
+    - 최소호출수
 - waitDurationInOpenState
 - automaticTransitionFromOpenToHalfOpenEnabled
 - recordExceptions
