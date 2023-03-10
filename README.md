@@ -1,12 +1,6 @@
 # TIL
 Today I Learned
 
-# 공부중
-- BOOK: CleanCode
-- Inflearn: 토비의 스프링 부트
-
-# 예정
-- DDD Start 다시 복습
-
-# 관심
-- Spring Event
+1. 모르면 간단하게 기록하고
+2. 또 모르면 더 자세히 찾아보고 기록하고
+3. 또 모르면 더더 자세히 찾아보고 기록하고 써먹어보고
