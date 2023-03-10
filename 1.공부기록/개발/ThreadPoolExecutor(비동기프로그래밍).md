@@ -27,4 +27,4 @@
 - CorePoolSize가 너무 클경우
 - exception
     - IllegalArgumentException : 생성 옵션의 validation이 안맞을때
-    - NullPointerException : workQueue가 null
+    - NullPointerException : workQueue가 null 
