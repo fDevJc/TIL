@@ -1,6 +1,16 @@
 # JWT
 
 - JWT(Json Web Token)
+- 구조
+    - JWT는 Header, Payload, Signature로 구성. 각 요소는 .으로 구분
+    - Header : 타입과 해시 알고리즘의 종류 포함
+    - Payload : 서버에서 첨부한 사용자 권한 정보와 데이터
+    - Signature : Header, Payload를 Base64 URL-safe Encode 한 이후 Header에 명시된 해시함수를 적용하고, 개인키로 서명한 전자서명이 담겨있다.
+- Payload에 민감한 정보를 넣으면 안된다
+    - header와 payload는 누구든 디코딩 가능
+- Signature
+    - HMACSHA512(base64(header)+"."+base64(payload),서버개인키)
+    - 서버의 개인키로만 복호화 가능
 - 수평으로 쉽게 확장 가능
     - 세션방식의 인증의 경우 중앙 세션 스토리지 시스템이 필요
     - 고정 세션 방식은 비용이 증대됨
@@ -22,3 +32,9 @@
     - 자원에 직접 Access하는데 필요한 정보를 포함
     - 클라이언트의 권한 부여 여부를 판단
     - 만료날짜가 있으며 토큰 수명이 짧음
+
+## 인증과정
+1. 서버에서 토큰을 생성하여 클라이언트로 전달
+2. 클라이언트는 API 요청시 헤더에 토큰값 같이 전달
+3. 서버는 해당 JWT토큰을 검증하여 인증인가처리
+    - Signature를 개인키로 복호화하여 헤더와 페이로드가 위변조되었는지 확인
