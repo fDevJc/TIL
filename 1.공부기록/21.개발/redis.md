@@ -126,3 +126,80 @@ OK
 - 3.x대 버전의 경우
     - 실제 used memory는 2GB로 보고가 되지만 11GB의 RSS를 사용하는 경우가 자주 발생
 - 다양한 사이즈를 가지는 데이터 보다는 유사한 크기의 데이털르 가지는 경우가 유리
+
+### 메모리가 부족할 떄는?
+- 좀 더 메모리 많은 장비로 Migration
+- 있는 데이터 줄이기
+
+### 메모리를 줄이기 위한 설정
+- 기본적으로 Collection 들은 다음과 같은 자료구조를 사용
+    - Hash -> HashTable을 하나 더 사용
+    - Sorted Set -> Skiplist와 HashTable을 이용.
+    - Set -> HashTable 사용
+    - 해당 자료 구조들은 메모리를 많이 사용함.
+- Ziplist를 이용하자
+
+### Ziplist 구조
+- In-Memory 특성 상, 적은 개수라면 선형 탐색을 하더라도 빠르다.
+
+### O(N) 관련 명령어는 주의하자
+- Redis는 Single Thread
+    - 단순한 get/set의 경우 초당 10만 TPS 이상 가능
+- Packet으로 하나의 Command가 완성되면 processCommand에서 실제로 실행됨
+    - 실행되는 동안 다른 packet은 그대로 쌓임
+- 대표적인 O(N) 명령들
+    - KEYS
+    - FLUSHALL, FLUSHDB
+    - Delete Collections
+    - Get ALL Collections
+
+### KEYS 는 어떻게 대체할 것인가?
+- scan 명령을 사용하는 것으로 하나의 긴 명령을 짧은 여러번의 명령으로 바꿀 수 있다.
+
+### Collection의 모든 item을 가져와야 할 때?
+- Collection의 일부만 가져오기
+- 큰 Collection을 작은 여러개의 Collection으로 나눠서 저장
+    - 하나당 몇천개 안쪽으로 저장하는게 좋음
+
+## Redis Replication
+
+### Redis Replication
+- Async Replication
+    - Replication Lag 이 발생할 수 있다.
+- 'Replicaof'(>=5.0.0) or 'slaveof' 명령으로 설정 가능
+    - Replicaof hostname port
+- DBMS로 보면 statement replication 유사
+    - 쿼리가 간다(now 명령어 등을 사용하면 값이 다를 수 있다)
+- 과정
+    - 세컨더리에서 명령을 전달
+    - 세컨더리는 프라이머리에 신크 명령 전달
+    - 프라이머리는 현재 메모리 상태를 저장하기 위해 Fork
+    - Fork한 프로세서는 현재 메모리 정보를 disk에 dump
+    - 해당 정볼르 세컨더리에 전달
+    - Fork 이후의 데이터를 세컨더리에 계속 전달
+    - diskless stream으로 디스크에 IO 작업없이도 가능
+- 주의 할점
+    - fork가 발생하므로 메모리 부족이 발생할 수 있다.
+    - Redis-cli--rdb 명령은 현재 상태의 메모리 스냅샷을 가져오므로 같은 문제를 발생
+    - AWS나 클라우드의 Redis는 좀 다르게 구현되어서 좀더 해당 부분이 안정적
+    - 많은 대수의 Redis 서버가 Replica를 두고 있다면
+        - 네트워크 이슈나, 사람의 작업으로 동시에 replication이 재시도 되도록하면 문제가 발생할 수 있음
+
+### Redis 데이터 분산
+- 데이터의 특성에 따라서 선택할 수 있는 방법이 달라진다.
+    - Cache 일때는 좋지만
+    - Persistent 해야하면 ...
+
+### Consistent Hashing
+- 음 ??
+
+### Sharding
+- 데이터를 어떻게 나눌것인가?
+- 데이터를 어떻게 찾을것인가?
+- 상황마다 샤딩방법은 달라짐
+    - Range
+        - 놀고있는 서버가 있을 수 있다
+    - Modular
+        - 2의 배수로 늘리게 되면 데이터의 변화가 크게 없지만 서버수가 기하급수적으로 늘어날수 있음
+    - Indexed
+        - 인덱스 서버를 따로 둬서 관리
