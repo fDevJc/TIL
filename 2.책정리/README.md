@@ -1,9 +1,11 @@
+### 객체지향
+- 객체지향의 사실과 오해
+### Java
+- 이펙티브 자바
 ### DB
 - Real MySQL
 ### Design Pattern
 - 헤드 퍼스트 디자인 패턴
-### Java
-- 이펙티브 자바
 ### Dev
 - Clean Code
 - 리팩터링 2판
