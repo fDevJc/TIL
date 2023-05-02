@@ -7,7 +7,7 @@
 ### Design Pattern
 - 헤드 퍼스트 디자인 패턴
 ### Dev
-- Clean Code
+- Clean Code 
 - 리팩터링 2판
 - 스프링부트와 AWS로 혼자 구현하는 웹 서비스
 ### Spring
@@ -16,7 +16,9 @@
 - 도메인 주도 설계로 시작하는 마이크로 서비스 개발
 ### DDD
 - DDD START!
+---
 
+- 도메인 주도 설계 핵심
 - 시작하세요! 도커/쿠버네스트
 - 그림으로 공부하는 IT 인프라 구조
 - 그림으로 배우는 Http & Network Basic
