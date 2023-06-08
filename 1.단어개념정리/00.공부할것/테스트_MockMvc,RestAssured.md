@@ -1,4 +1,0 @@
-# MockMvc VS RestAssured
-
-## MockMvc
-

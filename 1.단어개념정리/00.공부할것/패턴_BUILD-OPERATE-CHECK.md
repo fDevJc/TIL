@@ -1,1 +1,0 @@
-# Build Operate Check Pattern
